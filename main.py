@@ -1,19 +1,17 @@
 class Animal:
-    """Базовый класс для представления животных."""
 
     def __init__(self, name, age):
         self.name = name
         self.age = age
 
     def make_sound(self):
-        raise NotImplementedError("Метод make_sound() должен быть реализован в дочерних классах.")
+        pass
 
     def eat(self):
-        raise NotImplementedError("Метод eat() должен быть реализован в дочерних классах.")
+        pass
 
 
 class Bird(Animal):
-    """Класс, представляющий птиц."""
 
     def __init__(self, name, age, feathers_color):
         super().__init__(name, age)
@@ -27,7 +25,6 @@ class Bird(Animal):
 
 
 class Mammal(Animal):
-    """Класс, представляющий млекопитающих."""
 
     def __init__(self, name, age, fur_color):
         super().__init__(name, age)
@@ -41,7 +38,6 @@ class Mammal(Animal):
 
 
 class Reptile(Animal):
-    """Класс, представляющий рептилий."""
 
     def __init__(self, name, age, scales_color):
         super().__init__(name, age)
@@ -55,7 +51,6 @@ class Reptile(Animal):
 
 
 class ZooKeeper:
-    """Класс, представляющий смотрителя зоопарка."""
 
     def __init__(self, name, experience):
         self.name = name
@@ -66,7 +61,6 @@ class ZooKeeper:
 
 
 class Veterinarian:
-    """Класс, представляющий ветеринара."""
 
     def __init__(self, name, specialization):
         self.name = name
@@ -77,7 +71,6 @@ class Veterinarian:
 
 
 class Zoo:
-    """Класс, представляющий зоопарк."""
 
     def __init__(self, name, creatures, personnel):
         self.name = name
@@ -91,7 +84,6 @@ class Zoo:
         self.staff.append(staff_member)
 
 
-# Пример использования
 animals = [
     Bird("Воробей", 2, "коричневый"),
     Mammal("Собака", 4, "рыжий"),
@@ -105,7 +97,7 @@ staff = [
 
 zoo = Zoo("Центральный зоопарк", animals, staff)
 
-# Добавить нового животного
+# Добавить новое животное
 zoo.add_animal(Bird("Попугай", 1, "пестрый"))
 
 # Добавить нового сотрудника
