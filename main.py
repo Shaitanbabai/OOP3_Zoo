@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 class Animal:
     """Базовый класс для представления животных."""
 
@@ -82,10 +79,10 @@ class Veterinarian:
 class Zoo:
     """Класс, представляющий зоопарк."""
 
-    def __init__(self, name):
+    def __init__(self, name, creatures, personnel):
         self.name = name
-        self.animals = []
-        self.staff = []
+        self.animals = creatures
+        self.staff = personnel
 
     def add_animal(self, animal):
         self.animals.append(animal)
@@ -93,34 +90,29 @@ class Zoo:
     def add_staff(self, staff_member):
         self.staff.append(staff_member)
 
-    def get_animal_by_name(self, name):
-        for animal in self.animals:
-            if animal.name == name:
-                return animal
-        return None
 
-    def get_staff_by_position(self, position):
-        for staff_member in self.staff:
-            if isinstance(staff_member, type(position)):
-                return staff_member
-        return None
+# Пример использования
+animals = [
+    Bird("Воробей", 2, "коричневый"),
+    Mammal("Собака", 4, "рыжий"),
+    Reptile("Змея", 3, "зеленый"),
+]
 
-    def save_to_file(self, filename):
-        animals_data = []
-        for animal in self.animals:
-            if isinstance(animal, Bird):
-                animals_data.append(["Bird", animal.name, animal.age, animal.feathers_color])
-            elif isinstance(animal, Mammal):
-                animals_data.append(["Mammal", animal.name, animal.age, animal.fur_color])
-            elif isinstance(animal, Reptile):
-                animals_data.append(["Reptile", animal.name, animal.age, animal.scales_color])
+staff = [
+    ZooKeeper("Иван", 10),
+    Veterinarian("Мария", "хищные птицы"),
+]
 
-        staff_data = []
-        for staff_member in self.staff:
-            if isinstance(staff_member, ZooKeeper):
-                staff_data.append(["ZooKeeper", staff_member.name, staff_member.experience])
-            elif isinstance(staff_member, Veterinarian):
-                staff_data.append(["Veterinarian", staff_member.name, staff_member.specialization])
+zoo = Zoo("Центральный зоопарк", animals, staff)
 
-        animals_df = pd.DataFrame(animals_data, columns=["Type", "Name", "Age", "Color"])
-        staff_df = pd.DataFrame(staff_data, columns=["Position", "Name", "Details"])
+# Добавить нового животного
+zoo.add_animal(Bird("Попугай", 1, "пестрый"))
+
+# Добавить нового сотрудника
+zoo.add_staff(ZooKeeper("Петр", 5))
+
+# Смотритель кормит животное
+zoo.staff[0].feed_animal(zoo.animals[0])
+
+# Ветеринар лечит животное
+zoo.staff[1].heal_animal(zoo.animals[2])
